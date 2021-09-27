@@ -8,14 +8,13 @@ export default function SlotMachine() {
     const [win, setWin] = useState(null);
 
     const pullSlots = () => {
-        const i = ["🍒", "🍊", "🔔"];
-        const arr = [
-            i[Math.floor(Math.random() * 3)],
-            i[Math.floor(Math.random() * 3)],
-            i[Math.floor(Math.random() * 3)]
-        ];
+        const symbols = ["🍒", "🍊", "🔔"];
+        let arr = [];
+        for (let i = 0; i < 3; i++) {
+            arr.push(symbols[Math.floor(Math.random() * 3)]);
+        }
         setIcons(arr);
-        setWin(arr[0] === arr[1] && arr[1] === arr[2] ? "Winner!" : "Loser!");
+        setWin(arr[0] === arr[1] && arr[1] === arr[2] ? true : false);
     };
 
 
@@ -23,7 +22,7 @@ export default function SlotMachine() {
         <div>
             <h1>Slot Machines!</h1>
             <Button text="Pull Slot" clickFunc={pullSlots} />
-            <Slots i={icons} winner={win} />
+            <Slots icons={icons} winner={win} />
         </div>
     );
 }
